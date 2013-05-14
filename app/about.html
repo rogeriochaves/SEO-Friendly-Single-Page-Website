@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SEO Friendly Single Page Website</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/singlepage.css">
+    <link rel="stylesheet" href="styles/demo.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html" title="Home - Single Page">Home</a>
+            </li>
+            <li>
+                <a href="about.html" title="About - Single Page">About</a>
+            </li>
+            <li>
+                <a href="download.html" title="Download - Single Page">Download</a>
+            </li>
+            <li>
+                <a href="last_page.html" title="Last Page - Single Page">Last Page</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="singlepage vertical">
+        <div class="frame" id="about">
+            <div class="contents">
+                <div class="padding">
+                    <h1>About</h1>
+                    <p>This project aims to help the development of single page websites, without sacrificing the link-based navigations. That means that when Google Bot (or anybody with javascript disabled) tries to navigate your site, it will be just a plain, old website, instead of a single-page one.</p>
+                    <p>Go on, try to disable your JavaScript.</p>
+                    <p>This is possible because instead of having all code in the first page, each page has it's own code (/about, /contact, etc), and then the javascript makes an ajax call to load the other ones (all at once to be faster).</p>
+                    <p>First, you have to wrap your content on a .singlepage div, for example, in Ruby on Rails, you would put this on your layout file:</p>
+                    <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">&lt;div</span> <span style="color: #bbbbbb">class=</span><span style="color: #ed9d13">&quot;singlepage vertical&quot;</span><span style="color: #6ab825; font-weight: bold">&gt;</span>
+    <span style="color: #6ab825; font-weight: bold">&lt;%=</span> <span style="color: #d0d0d0">yield</span> <span style="color: #6ab825; font-weight: bold">%&gt;</span>
+<span style="color: #6ab825; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+
+                    <p>Then, on each page put a div with the .frame class, having the name of the page as its ID, with another div with the .contents class inside, like this:</p>
+
+                    <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">&lt;div</span> <span style="color: #bbbbbb">class=</span><span style="color: #ed9d13">&quot;frame&quot;</span> <span style="color: #bbbbbb">id=</span><span style="color: #ed9d13">&quot;index&quot;</span><span style="color: #6ab825; font-weight: bold">&gt;</span> <span style="color: #999999; font-style: italic">&lt;!-- Note the ID --&gt;</span>
+    <span style="color: #6ab825; font-weight: bold">&lt;div</span> <span style="color: #bbbbbb">class=</span><span style="color: #ed9d13">&quot;contents&quot;</span><span style="color: #6ab825; font-weight: bold">&gt;</span>
+        <span style="color: #999999; font-style: italic">&lt;!-- Your content goes here --&gt;</span>
+    <span style="color: #6ab825; font-weight: bold">&lt;/div&gt;</span>
+<span style="color: #6ab825; font-weight: bold">&lt;/div&gt;</span>
+</pre></div>
+
+                    <p>Now, initialize the singlepage script on your javascript, like this</p>
+
+                    <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$(</span><span style="color: #ed9d13">&#39;.singlepage&#39;</span><span style="color: #d0d0d0">).singlepage({</span>
+    <span style="color: #d0d0d0">pages:</span> <span style="color: #d0d0d0">[</span><span style="color: #ed9d13">&quot;index.html&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;about.html&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;download.html&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;last_page.html&quot;</span><span style="color: #d0d0d0">],</span>
+    <span style="color: #d0d0d0">menu:</span> <span style="color: #ed9d13">&#39;nav a&#39;</span><span style="color: #d0d0d0">,</span>
+    <span style="color: #d0d0d0">ajax_load:</span> <span style="color: #d0d0d0">{</span>
+        <span style="color: #d0d0d0">url:</span> <span style="color: #ed9d13">&#39;ajax_load.html&#39;</span><span style="color: #d0d0d0">,</span>
+        <span style="color: #d0d0d0">callback:</span> <span style="color: #d0d0d0">after_load</span>
+    <span style="color: #d0d0d0">}</span>
+<span style="color: #d0d0d0">});</span>
+</pre></div>
+
+                    <p>That's it! (don't expect much, this is still in version 0.0.1)</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="scripts/singlepage.js"></script>
+    <script src="scripts/demo.js"></script>
+</body>
+</html>

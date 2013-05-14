@@ -1,0 +1,39 @@
+/*
+	Created by rogeriochaves (github.com/rogeriochaves)
+*/
+
+$number_of_pages: 4;
+
+body{height: 100%; width: 100%; margin:0}
+
+.singlepage{
+	width: 100%; height: 100%; display: table; position: absolute; z-index: -1;
+	h1{margin:0}
+	.frame, .contents{margin:0; padding:0}
+	&.vertical{
+		height:100%;
+		.frame{display:table-row}
+		.contents{display:table-cell; position: absolute; width:100%;}
+	}
+	&.horizontal{
+		width:100%;
+		.frame{display:table-cell; position:absolute; width:(100% / $number_of_pages)}
+	}
+}
+.padding{padding:7% 10%;}
+
+
+#index{
+	background:#FEE;
+	h1{font-size:50px;}
+	.padding{text-align:center; margin-top: 80px}
+}
+#about{
+	background:#EEF; font-size:12px;
+}
+#download{
+	background:#EFE;
+}
+#last_page{
+	background:#FEF;
+}
